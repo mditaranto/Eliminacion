@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 import java.util.Arrays;
 
@@ -8,20 +8,21 @@ public class Main {
 
 		int aleat[] = new int[20];
 		int indiceBorrar = 0;
-
-		RellenarArray.rellenar(aleat);
-
+		
+		Funciones.rellenar(aleat);
+		
 		Arrays.sort(aleat);
 
-		for (int i = 1; i < 100; i++) {
-			indiceBorrar = Arrays.binarySearch(aleat, i);
-			while (indiceBorrar >= 0 && i % 2 != 0) {
+		for (int i = 0; i < aleat.length; i++) {
+			indiceBorrar = Arrays.binarySearch(aleat, aleat[i]);
+			while (indiceBorrar >= 0 && Funciones.esPrimo(aleat[i])) {
 				System.arraycopy(aleat, indiceBorrar + 1, aleat, indiceBorrar, aleat.length - indiceBorrar - 1);
 				aleat = Arrays.copyOf(aleat, aleat.length - 1);
-				indiceBorrar = Arrays.binarySearch(aleat, i);
+				indiceBorrar = Arrays.binarySearch(aleat, aleat[i]);
 			}
 		}
 		System.out.println(Arrays.toString(aleat));
+
 
 	}
 
